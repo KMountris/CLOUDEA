@@ -1,0 +1,80 @@
+# - Config file for the CLOUDEA package
+# It defines the following variables
+#  CLOUDEA_INCLUDE_DIRS - include directories for CLOUDEA
+#  CLOUDEA_LIBRARY_DIRS - library directories for CLOUDEA (normally not used!)
+#  CLOUDEA_LIBRARIES    - libraries to link against
+
+@PACKAGE_INIT@
+
+unset(extraArgs)
+if(${CMAKE_FIND_PACKAGE_NAME}_FIND_QUIETLY)
+    list(APPEND extraArgs QUIET)
+endif()
+
+if(${CMAKE_FIND_PACKAGE_NAME}_FIND_REQUIRED)
+    list(APPEND extraArgs REQUIRED)
+endif()
+
+
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaApproximantsTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaConditionsTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaElementsTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaExportersTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaGridTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaIntegrationTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaMaterialsTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaMeshTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaMeshIOTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaModelsTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaMonomialTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaQuadratureTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaSetsTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaSolversTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaSupportDomainTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaUtilitiesTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaVectorsTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cloudeaWeightFunctionsTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/CLOUDEATargets.cmake")
+
+check_required_components(
+    "cloudeaApproximants"
+    "cloudeaConditions"
+    "cloudeaElements"
+    "cloudeaExporters"
+    "cloudeaGrid"
+    "cloudeaIntegration"
+    "cloudeaMaterials"
+    "cloudeaMesh"
+    "cloudeaMeshIO"
+    "cloudeaModels"
+    "cloudeaMonomial"
+    "cloudeaQuadrature"
+    "cloudeaSets"
+    "cloudeaSolvers"
+    "cloudeaSupportDomain"
+    "cloudeaUtilities"
+    "cloudeaVectors"
+    "cloudeaWeightFunctions"
+    "CLOUDEA"
+)
+
+# Tell the user project where to find our headers and libraries
+set_and_check(CLOUDEA_INCLUDE_DIR "@PACKAGE_INSTALL_INCLUDEDIR@")
+set_and_check(CLOUDEA_LIBRARY_DIR "@PACKAGE_INSTALL_LIBDIR@")
+
+set(CLOUDEA_INCLUDE_DIRS "${CLOUDEA_INCLUDE_DIR}" CACHE PATH "The path to the directory that contains CLOUDEA.hpp")
+set(CLOUDEA_LIBRARY_DIRS "${CLOUDEA_LIBRARY_DIR}" CACHE PATH "The path to the directory that contains the CLOUDEA library")
+
+include(FindPackageHandleStandardArgs)
+
+find_library(CLOUDEA_LIBRARY NAMES CLOUDEA PATHS ${CLOUDEA_LIBRARY_DIR})
+find_package_handle_standard_args(CLOUDEA DEFAULT_MSG CLOUDEA_LIBRARY)
+
+mark_as_advanced(CLOUDEA_LIBRARY)
+
+if (CLOUDEA_FOUND)
+    set(CLOUDEA_LIBRARIES ${CLOUDEA_LIBRARY} CACHE PATH "The CLOUDEA library")
+endif()
+
+add_definitions (${CLOUDEA_DEFINITIONS})
+include_directories (${CLOUDEA_INCLUDE_DIRS})

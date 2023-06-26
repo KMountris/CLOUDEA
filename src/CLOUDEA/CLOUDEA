@@ -1,0 +1,52 @@
+/*
+ * CLOUDEA - Software for solving PDEs using explicit methods.
+ * Copyright (C) 2017  <Konstantinos A. Mountris> <konstantinos.mountris@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+
+
+/**
+   \file CLOUDEA
+   \brief CLOUDEA software header file. Should be included in a project to use CLOUDEA.
+   \author Konstantinos A. Mountris
+   \date 16/05/2017
+*/
+
+#ifndef CLOUDEA_CLOUDEA_HPP_
+#define CLOUDEA_CLOUDEA_HPP_
+
+// Collecting CLOUDEA modules' header files.
+
+#include "CLOUDEA/Approximants"
+#include "CLOUDEA/Conditions"
+#include "CLOUDEA/Elements"
+#include "CLOUDEA/Exporters"
+#include "CLOUDEA/Grid"
+#include "CLOUDEA/Integration"
+#include "CLOUDEA/Materials"
+#include "CLOUDEA/Mesh"
+#include "CLOUDEA/MeshIO"
+#include "CLOUDEA/Models"
+// #include "CLOUDEA/OptionsConfiguration"
+#include "CLOUDEA/Quadrature"
+#include "CLOUDEA/Sets"
+#include "CLOUDEA/Solvers"
+#include "CLOUDEA/SupportDomain"
+#include "CLOUDEA/Utilities"
+#include "CLOUDEA/Vectors"
+
+#endif //CLOUDEA_CLOUDEA_HPP_
